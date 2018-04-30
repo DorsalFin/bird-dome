@@ -6,7 +6,6 @@ public class BirdSpawner : MonoBehaviour
 {
     public GameObject birdPrefab;
     public float cooldown;
-    public float radius;
 
     float _lastSpawn;
 
@@ -19,7 +18,7 @@ public class BirdSpawner : MonoBehaviour
 
     void SpawnBird()
     {
-        Vector3 point = Random.onUnitSphere * radius;
+        Vector3 point = Random.onUnitSphere * GameManager.Instance.worldRadius;
         point.y = Mathf.Abs(point.y);
         Quaternion rot = Quaternion.LookRotation(Vector3.zero - point, Vector3.up);
         Instantiate(birdPrefab, point, rot);

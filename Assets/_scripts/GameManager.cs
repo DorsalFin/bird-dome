@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public float worldRadius = 50f;
+    public RadarManager radar;
     public VirtualCameraShaker virtualCameraShaker;
 
 
