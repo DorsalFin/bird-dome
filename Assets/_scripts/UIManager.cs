@@ -8,7 +8,7 @@ public class UIManager : MonoBehaviour
     public Text currentTimeText;
     public Text bestTimeText;
 
-    float _timer;
+    float _totalSeconds;
 
 
     private void Awake()
@@ -22,14 +22,14 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.Instance.IsPlaying())
         {
-            _timer += Time.deltaTime;
-            currentTimeText.text = _timer.ToString("00:00");
+            _totalSeconds += Time.deltaTime;
+            currentTimeText.text = SecondsToString(_totalSeconds);
         }
     }
 
     public void GameEnded()
     {
-        float thisSeconds = _timer;
+        float thisSeconds = _totalSeconds;
         float bestSeconds = PlayerPrefs.GetFloat("BestTime", Mathf.Infinity);
         if (thisSeconds < bestSeconds)
         {

@@ -1382,6 +1382,8 @@ MonoBehaviour:
   cawClips:
   - {fileID: 8300000, guid: 5277736978f0ae245bf3a9e092622ada, type: 3}
   - {fileID: 8300000, guid: c3f0e0b133d0e6842bd7158ea743dd07, type: 3}
+  featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
+    type: 2}
 --- !u!114 &114571532718574108
 MonoBehaviour:
   m_ObjectHideFlags: 1

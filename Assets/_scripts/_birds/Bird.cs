@@ -8,6 +8,7 @@ public class Bird : MonoBehaviour
     public float speed;
     public float damage = 1;
     public AudioClip[] cawClips;
+    public GameObject featherParticle;
 
     protected Vector3 _target;
 
@@ -55,6 +56,13 @@ public class Bird : MonoBehaviour
     public void Hit(float damage)
     {
         _health = Mathf.Clamp(_health - damage, 0, maxHealth);
+
+        // spawn a feather particle, and set the burst amount of feathers based on dmg dealt
+        int feathers = Mathf.Clamp(Mathf.RoundToInt(damage), 1, 10);
+        if (_health == 0) feathers = feathers * 2;
+        GameObject particle = Instantiate(featherParticle, transform.position, Quaternion.identity);
+        particle.GetComponent<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(0f, feathers));
+        
         if (_health == 0)
             Dead();
     }

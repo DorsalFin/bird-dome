@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class Dome : MonoBehaviour
 {
+    public Pilot pilot;
     public GameObject model;
     public float maxHealth;
     public AudioClip[] hitClips;
@@ -47,6 +48,7 @@ public class Dome : MonoBehaviour
     {
         _audio.clip = shatterClip;
         _audio.Play();
+        pilot.StartBreathing();
 
         // destroy all cracks
         for (int i = _crackParent.childCount - 1; i >= 0; i--)
@@ -57,8 +59,10 @@ public class Dome : MonoBehaviour
         Destroy(model);
     }
 
-    public void ShutDown()
+    public void Dead()
     {
+        pilot.Dead();
+
         // destroy all guns
         Gun[] guns = GetComponentsInChildren<Gun>();
         foreach (Gun gun in guns)

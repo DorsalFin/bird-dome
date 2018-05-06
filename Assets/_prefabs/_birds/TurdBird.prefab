@@ -1422,6 +1422,8 @@ MonoBehaviour:
   damage: 1
   cawClips:
   - {fileID: 8300000, guid: 52d986e60262a6b4c956389c58783548, type: 3}
+  featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
+    type: 2}
   height: 20
   turdPrefab: {fileID: 1910797902501438, guid: 9c961fae26b19e54998344d23be3e231, type: 2}
   turdOrigin: {fileID: 4232017796929034}

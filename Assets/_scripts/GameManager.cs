@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
-        dome.ShutDown();
+        dome.Dead();
         ui.GameEnded();
         _playing = false;
     }
