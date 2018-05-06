@@ -7,14 +7,15 @@ public class Bird : MonoBehaviour
     public float maxHealth = 1;
     public float speed;
     public float damage = 1;
-
     public AudioClip[] cawClips;
+
+    protected Vector3 _target;
 
     AudioSource _audio;
     float _health;
 
 
-    private void Awake()
+    public virtual void Awake()
     {
         _audio = GetComponent<AudioSource>();
         _health = maxHealth;
@@ -23,11 +24,19 @@ public class Bird : MonoBehaviour
         _audio.Play();
     }
 
-    private void Update()
+    public virtual void Update()
     {
         float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, Vector3.zero, step);
+        transform.position = Vector3.MoveTowards(transform.position, _target, step);
+
+        // check if we've reached our target
+        float dist = Vector3.Distance(transform.position, _target);
+        if (Mathf.Abs(dist) < 0.5f)
+            TargetReached();
     }
+
+    // override for functionality
+    public virtual void TargetReached() { }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -36,6 +45,10 @@ public class Bird : MonoBehaviour
             Dome dome = collision.transform.GetComponentInParent<Dome>();
             dome.Hit(damage, collision.contacts[0].point);
             Dead();
+        }
+        else if (collision.transform.CompareTag("Pilot"))
+        {
+            GameManager.Instance.EndGame();
         }
     }
 

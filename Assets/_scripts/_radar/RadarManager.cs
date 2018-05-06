@@ -5,6 +5,7 @@ using UnityEngine;
 class Target
 {
     public GameObject target;
+    public Color colour = Color.white;
     public GameObject blip;
     public LineRenderer line;
 }
@@ -41,7 +42,12 @@ public class RadarManager : MonoBehaviour
                      );
 
                 if (target.blip == null)
+                {
                     target.blip = Instantiate(blipPrefab, blipParent);
+                    target.blip.GetComponent<Renderer>().material.color = target.colour;
+                    target.line = target.blip.GetComponent<LineRenderer>();
+                    target.line.material.color = target.colour;
+                }
 
                 // set the blips position
                 target.blip.transform.localPosition = radarPos;
@@ -57,11 +63,11 @@ public class RadarManager : MonoBehaviour
         cam.transform.RotateAround(model.transform.position, Vector3.up, angle);
     }
 
-    public void AddTarget(GameObject targetObj)
+    public void AddTarget(GameObject targetObj, Color colour)
     {
         Target target = new Target();
         target.target = targetObj;
-        target.line = targetObj.GetComponent<LineRenderer>();
+        target.colour = colour;
         _targets.Add(target);
     }
 }

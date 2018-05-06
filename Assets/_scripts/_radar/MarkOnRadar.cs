@@ -8,8 +8,11 @@ using UnityEngine;
 /// </summary>
 public class MarkOnRadar : MonoBehaviour
 {
+    public Color colour;
+
+
 	void Start ()
     {
-        GameManager.Instance.radar.AddTarget(gameObject);
+        GameManager.Instance.radar.AddTarget(gameObject, colour);
 	}
 }

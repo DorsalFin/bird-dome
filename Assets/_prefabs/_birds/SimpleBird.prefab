@@ -218,11 +218,11 @@ GameObject:
   - component: {fileID: 95072245684078722}
   - component: {fileID: 135124809032622352}
   - component: {fileID: 54899213266371876}
-  - component: {fileID: 114839711742266116}
+  - component: {fileID: 114567116285396158}
   - component: {fileID: 114571532718574108}
   - component: {fileID: 82962762146808884}
   m_Layer: 0
-  m_Name: BreadPixels Bird rig
+  m_Name: SimpleBird
   m_TagString: Bird
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1365,6 +1365,23 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114567116285396158
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1366354547719658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8571fd5dc9cbd94da375fe4ff3bc78b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  speed: 5
+  damage: 1
+  cawClips:
+  - {fileID: 8300000, guid: 5277736978f0ae245bf3a9e092622ada, type: 3}
+  - {fileID: 8300000, guid: c3f0e0b133d0e6842bd7158ea743dd07, type: 3}
 --- !u!114 &114571532718574108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1376,23 +1393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1c1c86785593a3418f04d4cde5b3d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114839711742266116
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1366354547719658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab00af5457020f2449710941e05529e4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 1
-  speed: 5
-  damage: 1
-  cawClips:
-  - {fileID: 8300000, guid: 5277736978f0ae245bf3a9e092622ada, type: 3}
-  - {fileID: 8300000, guid: c3f0e0b133d0e6842bd7158ea743dd07, type: 3}
+  colour: {r: 0.98039216, g: 0.34901962, b: 0.46165904, a: 1}
 --- !u!135 &135124809032622352
 SphereCollider:
   m_ObjectHideFlags: 1
