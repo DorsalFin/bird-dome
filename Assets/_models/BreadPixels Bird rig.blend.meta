@@ -1,0 +1,201 @@
+fileFormatVersion: 2
+guid: fde5db6f1cb4d3843aa5e3f2a81bdfd4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bird_armature
+    100002: Bird_Body
+    100004: BM_Body
+    100006: BM_Eyes
+    100008: BM_Feet
+    100010: BM_Head
+    100012: BM_MasterBone
+    100014: BM_Mouth
+    100016: BM_Pole
+    100018: BM_Tail
+    100020: BM_Wings
+    100022: Body
+    100024: Bone
+    100026: Bone_001
+    100028: Bone_002
+    100030: Bone_005
+    100032: Bone_010
+    100034: Bone_016
+    100036: Bone_017
+    100038: Bone_018
+    100040: Bone_019
+    100042: //RootNode
+    100044: Driver_1
+    100046: Driver_2
+    100048: Driver_3
+    100050: Eye_L
+    100052: Eye_R
+    100054: Head
+    100056: Leg_L
+    100058: Leg_R
+    100060: Mouth_Down
+    100062: Mouth_Up
+    100064: Pole_L
+    100066: Pole_R
+    100068: Tail
+    100070: Wing_L
+    100072: Wing_R
+    400000: Bird_armature
+    400002: Bird_Body
+    400004: BM_Body
+    400006: BM_Eyes
+    400008: BM_Feet
+    400010: BM_Head
+    400012: BM_MasterBone
+    400014: BM_Mouth
+    400016: BM_Pole
+    400018: BM_Tail
+    400020: BM_Wings
+    400022: Body
+    400024: Bone
+    400026: Bone_001
+    400028: Bone_002
+    400030: Bone_005
+    400032: Bone_010
+    400034: Bone_016
+    400036: Bone_017
+    400038: Bone_018
+    400040: Bone_019
+    400042: //RootNode
+    400044: Driver_1
+    400046: Driver_2
+    400048: Driver_3
+    400050: Eye_L
+    400052: Eye_R
+    400054: Head
+    400056: Leg_L
+    400058: Leg_R
+    400060: Mouth_Down
+    400062: Mouth_Up
+    400064: Pole_L
+    400066: Pole_R
+    400068: Tail
+    400070: Wing_L
+    400072: Wing_R
+    2100000: unnamed
+    2100002: Body_C1
+    2100004: Body_C2
+    2100006: Mouth_
+    2100008: Legs
+    2100010: Eyes
+    2100012: Pupils
+    2300000: BM_Body
+    2300002: BM_Eyes
+    2300004: BM_Feet
+    2300006: BM_Head
+    2300008: BM_MasterBone
+    2300010: BM_Mouth
+    2300012: BM_Pole
+    2300014: BM_Tail
+    2300016: BM_Wings
+    3300000: BM_Body
+    3300002: BM_Eyes
+    3300004: BM_Feet
+    3300006: BM_Head
+    3300008: BM_MasterBone
+    3300010: BM_Mouth
+    3300012: BM_Pole
+    3300014: BM_Tail
+    3300016: BM_Wings
+    4300000: BM_Pole
+    4300002: BM_Feet
+    4300004: BM_Mouth
+    4300006: BM_Head
+    4300008: BM_Eyes
+    4300010: BM_Tail
+    4300012: BM_Wings
+    4300014: BM_Body
+    4300016: BM_MasterBone
+    4300018: Bird_Body
+    7400000: Default Take
+    9500000: //RootNode
+    13700000: Bird_Body
+    2186277476908879412: ImportLogs
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

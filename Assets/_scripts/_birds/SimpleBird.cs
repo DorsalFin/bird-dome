@@ -8,7 +8,7 @@ public class SimpleBird : Bird
     {
         base.Awake();
 
-        // set this simple birds target to the dome which is at 0,0,0
-        _target = Vector3.zero;
+        // set this simple birds target to the dome
+        _target = GameManager.Instance.dome.model.transform.position;
     }
 }

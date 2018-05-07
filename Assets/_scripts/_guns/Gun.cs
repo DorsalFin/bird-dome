@@ -5,7 +5,7 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     public float shotCooldown;
-    public ParticleSystem particle;
+    public ParticleSystem[] particles;
     public AudioClip[] clips;
 
     AudioSource _audio;
@@ -33,8 +33,11 @@ public class Gun : MonoBehaviour
         if (_anim)
             _anim.Play("shoot");
 
-        if (particle)
-            particle.Play();
+        if (particles != null && particles.Length > 0)
+        {
+            foreach (ParticleSystem ps in particles)
+                ps.Play();
+        }
 
         if (_audio && clips.Length > 0)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ProjectileGun : Gun
 {
-    public Transform shotOrigin;
+    public Transform[] shotOrigins;
     public GameObject shotPrefab;
     public float shotForce;
 
@@ -21,8 +21,11 @@ public class ProjectileGun : Gun
             lookPoint = hit.point;
         else lookPoint = ray.GetPoint(30);
 
-        GameObject proj = Instantiate(shotPrefab, shotOrigin.position, Quaternion.identity);
-        proj.transform.LookAt(lookPoint);
-        proj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotForce);
+        foreach (Transform origin in shotOrigins)
+        {
+            GameObject proj = Instantiate(shotPrefab, origin.position, Quaternion.identity);
+            proj.transform.LookAt(lookPoint);
+            proj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * shotForce);
+        }
     }
 }
