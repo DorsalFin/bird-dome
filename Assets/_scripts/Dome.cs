@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using EZCameraShake;
 
 public class Dome : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Dome : MonoBehaviour
     float _health;
     AudioSource _audio;
     Transform _crackParent;
+    CameraShaker _cameraShaker;
 
 
     private void Awake()
@@ -24,11 +26,13 @@ public class Dome : MonoBehaviour
         _health = maxHealth;
         _crackParent = new GameObject().transform;
         _crackParent.transform.parent = model.transform;
+        _cameraShaker = GetComponentInChildren<CameraShaker>();
     }
 
     public void Hit(float damage, Vector3 point)
     {
-        GameManager.Instance.virtualCameraShaker.Shake();
+        //GameManager.Instance.virtualCameraShaker.Shake();
+        ShakeDome();
         AudioSource.PlayClipAtPoint(hitClips[Random.Range(0, hitClips.Length)], point);
 
         _health = Mathf.Clamp(_health - damage, 0, maxHealth);
@@ -70,5 +74,10 @@ public class Dome : MonoBehaviour
 
         virtualCamera.gameObject.SetActive(false);
         GameManager.Instance.watchCamera.gameObject.SetActive(true);
+    }
+
+    public void ShakeDome()
+    {
+        _cameraShaker.ShakeOnce();
     }
 }

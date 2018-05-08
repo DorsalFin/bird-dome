@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class Gun : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class Gun : MonoBehaviour
 
     void Update ()
     {
-		if (Input.GetButton("Fire1"))
+		if (CrossPlatformInputManager.GetButton("Fire1"))
         {
             if (Time.time > _lastShot + shotCooldown)
                 Fire();
