@@ -10,6 +10,7 @@ TagManager:
   - FxTemporaire
   - Boundary
   - Pilot
+  - HandWipe
   layers:
   - Default
   - TransparentFX
@@ -23,8 +24,8 @@ TagManager:
   - Radar
   - Boundary
   - Dome
-  - 
-  - 
+  - HandWipe
+  - Bird
   - 
   - 
   - 

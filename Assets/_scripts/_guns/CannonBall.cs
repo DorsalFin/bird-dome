@@ -5,15 +5,29 @@ using UnityEngine;
 public class CannonBall : MonoBehaviour
 {
     public float damage = 1;
+    public float gravityStartTime;
     public GameObject explodePrefab;
     public AudioClip[] hitClips;
 
     float _radius;
+    float _timer;
+    bool _gravityOn;
 
 
     private void Awake()
     {
         _radius = GetComponent<SphereCollider>().radius;
+    }
+
+    private void Update()
+    {
+        if (!_gravityOn && _timer >= gravityStartTime)
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+            _gravityOn = true;
+        }
+        else
+            _timer += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)

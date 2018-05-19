@@ -6,9 +6,11 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Gun : MonoBehaviour
 {
     public float shotCooldown;
-    public ParticleSystem[] particles;
+    public ParticleSystem particlePrefab;
+    public Transform[] shotOrigins;
     public AudioClip[] clips;
 
+    Dome _dome;
     AudioSource _audio;
     Animator _anim;
     float _lastShot;
@@ -16,12 +18,16 @@ public class Gun : MonoBehaviour
 
     private void Awake()
     {
+        _dome = GetComponentInParent<Dome>();
         _anim = GetComponent<Animator>();
         _audio = GetComponent<AudioSource>();
     }
 
     void Update ()
     {
+        if (!_dome.CanShoot)
+            return;
+
 		if (CrossPlatformInputManager.GetButton("Fire1"))
         {
             if (Time.time > _lastShot + shotCooldown)
@@ -34,10 +40,10 @@ public class Gun : MonoBehaviour
         if (_anim)
             _anim.Play("shoot");
 
-        if (particles != null && particles.Length > 0)
+        if (particlePrefab != null)
         {
-            foreach (ParticleSystem ps in particles)
-                ps.Play();
+            foreach (Transform origin in shotOrigins)
+                Instantiate(particlePrefab, origin.position, Quaternion.identity);
         }
 
         if (_audio && clips.Length > 0)

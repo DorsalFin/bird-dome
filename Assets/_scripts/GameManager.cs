@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public DayNightManager day;
     public RadarManager radar;
     public VirtualCameraShaker virtualCameraShaker;
-    public CinemachineVirtualCamera watchCamera;
+    public Camera watchCamera;
 
     public bool IsPlaying() { return _playing; }
     bool _playing;

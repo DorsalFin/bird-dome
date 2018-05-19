@@ -21,7 +21,7 @@ namespace EZCameraShake
         /// </summary>
         public Vector3 DefaultRotInfluence = new Vector3(1, 1, 1);
 
-        public float magnitude, roughness, fadeIn, fadeOut;
+        public float magnitude = 4, roughness = 3, fadeIn = 0.1f, fadeOut = 2;
 
         Vector3 posAddShake, rotAddShake;
 
