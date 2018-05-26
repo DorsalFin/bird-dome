@@ -17,6 +17,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     public GameObject characterBody;
 
     Dome _dome;
+    AudioSource _audio;
     Vector2 _mouseAbsolute;
     Vector2 _smoothMouse;
 
@@ -24,6 +25,7 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     private void Awake()
     {
         _dome = GetComponentInParent<Dome>();
+        _audio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -60,6 +62,13 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
         // clamp y values relative to initial orientation
         _mouseAbsolute.y = Mathf.Clamp(_mouseAbsolute.y, yClampMin, yClampMax);
+
+        if (mouseDelta.magnitude > 0.1f)
+        {
+            _audio.volume = Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude);
+            _audio.pitch = (Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude) / 2f) + 0.75f;
+            _audio.Play();
+        }
 
         transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
 

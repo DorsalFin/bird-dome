@@ -6,19 +6,23 @@ public class Bird : MonoBehaviour
 {
     public float maxHealth = 1;
     public float speed;
+    public float rotationSpeed = 2f;
     public float damage = 1;
     public AudioClip[] cawClips;
+    public AudioClip[] deadClips;
     public GameObject featherParticle;
 
     protected Vector3 _target;
+    protected AudioSource _audio;
+    protected Animator _anim;
 
-    AudioSource _audio;
     float _health;
 
 
     public virtual void Awake()
     {
         _audio = GetComponent<AudioSource>();
+        _anim = GetComponent<Animator>();
         _health = maxHealth;
         _audio.clip = cawClips[Random.Range(0, cawClips.Length)];
         _audio.loop = true;
@@ -29,6 +33,9 @@ public class Bird : MonoBehaviour
     {
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, _target, step);
+        Quaternion targetRot = Quaternion.LookRotation(_target - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSpeed);
+
 
         // check if we've reached our target
         float dist = Vector3.Distance(transform.position, _target);
@@ -69,6 +76,7 @@ public class Bird : MonoBehaviour
 
     void Dead()
     {
+        AudioSource.PlayClipAtPoint(deadClips[Random.Range(0, deadClips.Length)], transform.position);
         Destroy(gameObject);
     }
 }

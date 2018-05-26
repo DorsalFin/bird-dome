@@ -79,6 +79,13 @@ public class BirdSpawner : MonoBehaviour
             spawnPos = new Vector3(temp.x, height, temp.y);
             spawnRot = Quaternion.LookRotation(new Vector3(0, height, 0) - spawnPos, Vector3.up);
         }
+        else if (birdType.prefab.name == "Swoopy")
+        {
+            float height = birdType.prefab.GetComponent<SwoopBird>().height;
+            Vector3 temp = Random.insideUnitCircle.normalized * GameManager.Instance.worldRadius;
+            spawnPos = new Vector3(temp.x, height, temp.y);
+            spawnRot = Quaternion.LookRotation(new Vector3(0, height, 0) - spawnPos, Vector3.up);
+        }
 
         Instantiate(birdType.prefab, spawnPos, spawnRot);
         birdType.lastSpawn = Time.time;

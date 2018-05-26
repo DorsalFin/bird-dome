@@ -103,6 +103,7 @@ ModelImporter:
     7400000: Default Take
     7400002: flying
     7400004: flying (1)
+    7400006: Swoop
     9500000: //RootNode
     13700000: bird
   externalObjects:
@@ -159,7 +160,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: flying (1)
+      name: flying
       takeName: flying
       firstFrame: -1
       lastFrame: 19
@@ -187,8 +188,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: flying
-      takeName: flying
+      name: Swoop
+      takeName: Swoop
       firstFrame: -1
       lastFrame: 19
       wrapMode: 0

@@ -709,11 +709,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  speed: 8
+  speed: 5
   damage: 1
   cawClips:
   - {fileID: 8300000, guid: 5277736978f0ae245bf3a9e092622ada, type: 3}
-  - {fileID: 8300000, guid: c3f0e0b133d0e6842bd7158ea743dd07, type: 3}
+  deadClips:
+  - {fileID: 8300000, guid: 2d80ac2defbf7b742aea68479c39018a, type: 3}
+  - {fileID: 8300000, guid: 8c164297642f76a4f99e23ce51765b87, type: 3}
+  - {fileID: 8300000, guid: ddea768fb3943414ebba26a16ce2262a, type: 3}
   featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
     type: 2}
 --- !u!114 &114571532718574108
