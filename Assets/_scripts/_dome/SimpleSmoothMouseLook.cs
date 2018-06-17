@@ -65,6 +65,10 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
         if (mouseDelta.magnitude > 0.1f)
         {
+            // record on walkthrough if need be
+            if (Walkthrough.Instance.IsRunning)
+                Walkthrough.Instance.FillStepBar(0.0075f, 0);
+
             _audio.volume = Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude);
             _audio.pitch = (Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude) / 2f) + 0.75f;
             _audio.Play();

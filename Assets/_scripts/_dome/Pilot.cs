@@ -6,6 +6,7 @@ public class Pilot : MonoBehaviour
 {
     public AudioClip breathingClip;
     public AudioClip deadClip;
+    public GameObject model;
     public bool dead;
 
     AudioSource _audio;
@@ -14,6 +15,18 @@ public class Pilot : MonoBehaviour
     private void Awake()
     {
         _audio = GetComponent<AudioSource>();
+    }
+
+    private void Update()
+    {
+        if (GameManager.Instance.dome.CanLook)
+        {
+            // the pilot should rotate with the guns only on the y axis
+            model.transform.eulerAngles = new Vector3(
+                model.transform.eulerAngles.x,
+                GameManager.Instance.dome.domeCamera.transform.eulerAngles.y,
+                model.transform.eulerAngles.z);
+        }
     }
 
     public void StartBreathing()

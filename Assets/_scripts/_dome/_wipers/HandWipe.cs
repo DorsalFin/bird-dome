@@ -52,7 +52,7 @@ public class HandWipe : MonoBehaviour
     Vector3 GetHitPoint(Vector3 mousePos)
     {
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(mousePos);
+        Ray ray = GameManager.Instance.dome.domeCamera.ScreenPointToRay(mousePos);
 
         // reverse the ray and shoot from outside since we can't hit the inside of a sphere collider
         ray.origin = ray.GetPoint(10f);

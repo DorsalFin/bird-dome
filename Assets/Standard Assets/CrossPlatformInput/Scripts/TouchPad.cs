@@ -42,6 +42,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 		bool m_Dragging;
 		int m_Id = -1;
 		Vector2 m_PreviousTouchPos; // swipe style control touch
+        RectTransform _rectTransform;
 
 
 #if !UNITY_EDITOR
@@ -62,6 +63,7 @@ namespace UnityStandardAssets.CrossPlatformInput
             m_Image = GetComponent<Image>();
             m_Center = m_Image.transform.position;
 #endif
+            _rectTransform = GetComponent<RectTransform>();
         }
 
 		void CreateVirtualAxes()
@@ -113,6 +115,22 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         void Update()
 		{
+            //// detect touch down in rect
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    if (RectTransformUtility.RectangleContainsScreenPoint(_rectTransform, Input.mousePosition))
+            //    {
+            //        m_Dragging = true;
+            //        m_Id = 0;
+            //    }
+            //}
+            //else if (Input.GetMouseButtonUp(0) && m_Dragging)
+            //{
+            //    m_Dragging = false;
+            //    m_Id = -1;
+            //    UpdateVirtualAxes(Vector3.zero);
+            //}
+
 			if (!m_Dragging)
 			{
 				return;

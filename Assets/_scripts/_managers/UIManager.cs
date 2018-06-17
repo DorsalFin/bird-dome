@@ -1,47 +1,54 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityStandardAssets.CrossPlatformInput;
 
 public class UIManager : MonoBehaviour
 {
-    public Text currentTimeText;
-    public Text bestTimeText;
+    public GameObject settingsButton;
+    public GameObject settingsPanel;
+    public Text sensitivityValue;
+    public Slider sensitivitySlider;
+    public TouchPad touchPad;
 
-    float _totalSeconds;
 
-
-    private void Awake()
+    private void Start()
     {
-        float bestSeconds = PlayerPrefs.GetFloat("BestTime", 0f);
-        if (bestSeconds > 0f)
-            bestTimeText.text = SecondsToString(bestSeconds);
+        float sens = PlayerPrefs.GetFloat("sensitivity", 0.5f);
+        sensitivitySlider.value = sens;
+        SetSensitivity(sens);
     }
 
-    private void Update()
+    public void SettingsButtonPressed()
     {
-        if (GameManager.Instance.IsPlaying())
+        settingsPanel.SetActive(!settingsPanel.activeSelf);
+        if (!settingsPanel.activeSelf)
         {
-            _totalSeconds += Time.deltaTime;
-            currentTimeText.text = SecondsToString(_totalSeconds);
+            // when turning off settings panel, update values
+            SetSensitivity(sensitivitySlider.value);
         }
+        Time.timeScale = settingsPanel.activeSelf ? 0f : 1f;
+        AudioListener.pause = settingsPanel.activeSelf;
     }
 
-    public void GameEnded()
+    public void SliderValueChanged()
     {
-        float thisSeconds = _totalSeconds;
-        float bestSeconds = PlayerPrefs.GetFloat("BestTime", Mathf.Infinity);
-        if (thisSeconds < bestSeconds)
-        {
-            bestTimeText.text = SecondsToString(thisSeconds);
-            PlayerPrefs.SetFloat("BestTime", thisSeconds);
-        }
+        sensitivityValue.text = sensitivitySlider.value.ToString("F1");
     }
 
-    string SecondsToString(float totalSeconds)
+    void SetSensitivity(float value)
     {
-        int seconds = Mathf.RoundToInt(totalSeconds % 60);
-        int minutes = Mathf.RoundToInt(totalSeconds / 60);
-        return minutes.ToString("00") + ":" + seconds.ToString("00");
+        float scaledValue = Mathf.Lerp(GameManager.Instance.sensitivityBounds.x, GameManager.Instance.sensitivityBounds.y, value);
+        touchPad.Xsensitivity = scaledValue;
+        touchPad.Ysensitivity = scaledValue;
+        sensitivityValue.text = value.ToString("F1");
+        PlayerPrefs.SetFloat("sensitivity", value);
+    }
+
+    public void MenuButtonPressed()
+    {
+        SceneManager.LoadScene("title");
     }
 }

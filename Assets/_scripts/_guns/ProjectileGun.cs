@@ -14,7 +14,7 @@ public class ProjectileGun : Gun
 
         foreach (Transform origin in shotOrigins)
         {
-            Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+            Ray ray = GameManager.Instance.dome.domeCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
             RaycastHit hit;
             int layerMask = LayerMask.GetMask("Bird");
             Vector3 aimPoint = ray.GetPoint(GameManager.Instance.worldRadius);

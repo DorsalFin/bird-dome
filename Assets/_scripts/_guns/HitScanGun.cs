@@ -13,7 +13,7 @@ public class HitScanGun : Gun
     {
         base.Fire();
 
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+        Ray ray = GameManager.Instance.dome.domeCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
         RaycastHit hit;
         //int layerMask = (1 << LayerMask.NameToLayer("Default"));
 

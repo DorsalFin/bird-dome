@@ -1,0 +1,41 @@
+
+scores; http://dreamlo.com/lb/cF9vu5IW60eDhFiLGJ6DVQV9Vd9XCLAEyVLOVOh_4JmQ
+
+UPGRADE PROCESS
+===============
+upgrades
+	-guns
+		- faster firing
+		- larger proximity
+		- every x shot releases y
+	-dome
+		- repel
+		- stronger shell
+		- bird seed launcher (what is this? a distraction of some kind)
+		- auto windscreen wiper
+
+between waves you can...
+	- clean poo with a rag (physically takes time)
+	- repair cracks with some kind of glue-filler (physically takes time)
+	- install an upgrade on your dome (just have to press a button but mentally takes time to decide)
+...you have a limited time until the next wave comes
+
+- upgrades are visually fantastic
+- cleaning poo becomes a hassle the longer you leave (takes too long to clean off)
+
+
+
+GUNS
+====
+- choose a gun for your dome on the menu screen
+- your chosen gun can be upgraded as you play
+- unlock more dome guns as you play
+
+
+
+DOME
+====
+- customize your dome from the menu
+- choose a base colour
+- hand paint on the exterior
+- paints can be unlocked as you play

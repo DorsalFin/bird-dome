@@ -25,7 +25,9 @@ public class SwoopBird : Bird
 
     public override void TargetReached()
     {
-        if (!_swooping)
+        base.TargetReached();
+
+        if (!_swooping && !GameManager.Instance.dome.pilot.dead)
         {
             // set the target to be the dome
             _target = GameManager.Instance.dome.transform.position;

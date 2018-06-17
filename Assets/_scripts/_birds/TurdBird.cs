@@ -38,6 +38,7 @@ public class TurdBird : Bird
 
     public override void TargetReached()
     {
+        GameManager.Instance.birdSpawner.aliveBirds--;
         Destroy(gameObject);
     }
 

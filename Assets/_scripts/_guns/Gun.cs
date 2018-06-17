@@ -9,6 +9,7 @@ public class Gun : MonoBehaviour
     public ParticleSystem particlePrefab;
     public Transform[] shotOrigins;
     public AudioClip[] clips;
+    public AudioClip[] reloadClips;
 
     Dome _dome;
     AudioSource _audio;
@@ -37,6 +38,10 @@ public class Gun : MonoBehaviour
 
     public virtual void Fire()
     {
+        // record on walkthrough if need be
+        if (Walkthrough.Instance.IsRunning)
+            Walkthrough.Instance.FillStepBar(0.251f, 1);
+
         if (_anim)
             _anim.Play("shoot");
 
@@ -46,9 +51,12 @@ public class Gun : MonoBehaviour
                 Instantiate(particlePrefab, origin.position, Quaternion.identity);
         }
 
-        if (_audio && clips.Length > 0)
+        if (clips.Length > 0)
+            AudioSource.PlayClipAtPoint(clips[Random.Range(0, clips.Length)], transform.position);
+
+        if (_audio && reloadClips.Length > 0)
         {
-            _audio.clip = clips[Random.Range(0, clips.Length)];
+            _audio.clip = reloadClips[Random.Range(0, reloadClips.Length)];
             _audio.Play();
         }
 

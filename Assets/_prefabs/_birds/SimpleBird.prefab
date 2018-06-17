@@ -396,7 +396,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366354547719658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.28, z: -4.566}
+  m_LocalPosition: {x: -0.91, y: 6.7, z: 14.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4277887556883064}
@@ -478,13 +478,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1671251465670602}
-  m_LocalRotation: {x: 0.75157696, y: -0, z: -0, w: 0.6596455}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0.06}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4374615746928674}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!4 &4587438292422808
 Transform:
   m_ObjectHideFlags: 1
@@ -709,7 +709,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1
-  speed: 5
+  speed: 3
+  rotationSpeed: 2
   damage: 1
   cawClips:
   - {fileID: 8300000, guid: 5277736978f0ae245bf3a9e092622ada, type: 3}
@@ -719,6 +720,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddea768fb3943414ebba26a16ce2262a, type: 3}
   featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
     type: 2}
+  points: 5
 --- !u!114 &114571532718574108
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -731,6 +733,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   colour: {r: 0.98039216, g: 0.34901962, b: 0.46165904, a: 1}
+  icon: {fileID: 21300000, guid: 2e6c8570c41352146aaa75ed9b6500a2, type: 3}
 --- !u!119 &119525594656852060
 Projector:
   m_ObjectHideFlags: 1
@@ -778,8 +781,8 @@ SkinnedMeshRenderer:
   m_Materials:
   - {fileID: 2100000, guid: c72390e4be99ff0448915af6e4af941d, type: 2}
   - {fileID: 2100000, guid: 1d4e4cec8912d6b41a012e939316d109, type: 2}
-  - {fileID: 2100000, guid: 30e2e22f714c44f46bc0050df46fd326, type: 2}
-  - {fileID: 2100000, guid: c3dd527826c31024c94aa96fa2337c7f, type: 2}
+  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
+  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
   - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0

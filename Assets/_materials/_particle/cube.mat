@@ -68,9 +68,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
-    - _CollapseStrength: 0.01076889
+    - _CollapseStrength: 0.010707439
     - _Cutoff: 0.5
-    - _CutoffThreshold: 0
+    - _CutoffThreshold: 0.000002410634
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
     - _EdgeRadius: -0.25

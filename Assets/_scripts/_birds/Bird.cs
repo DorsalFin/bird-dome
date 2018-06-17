@@ -12,11 +12,15 @@ public class Bird : MonoBehaviour
     public AudioClip[] deadClips;
     public GameObject featherParticle;
 
+    public int points;
+
     protected Vector3 _target;
     protected AudioSource _audio;
     protected Animator _anim;
 
     float _health;
+    bool _diverted;
+    bool _dead;
 
 
     public virtual void Awake()
@@ -31,20 +35,30 @@ public class Bird : MonoBehaviour
 
     public virtual void Update()
     {
+        if (GameManager.Instance.dome.IsDead() && !_diverted)
+        {
+            // divert bird and simulate it flying into the tube
+            _target = GameManager.Instance.dome.transform.position + (Vector3.up * 1.5f);
+            _diverted = true;
+        }
+
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, _target, step);
         Quaternion targetRot = Quaternion.LookRotation(_target - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSpeed);
 
-
         // check if we've reached our target
         float dist = Vector3.Distance(transform.position, _target);
-        if (Mathf.Abs(dist) < 0.5f)
+        if ((!_diverted && Mathf.Abs(dist) < 0.5f) || (_diverted && Mathf.Abs(dist) < 1.25f))
             TargetReached();
     }
 
     // override for functionality
-    public virtual void TargetReached() { }
+    public virtual void TargetReached()
+    {
+        if (_diverted)
+            _target = Vector3.zero;
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -52,7 +66,7 @@ public class Bird : MonoBehaviour
         {
             Dome dome = collision.transform.GetComponentInParent<Dome>();
             dome.Hit(damage, collision.contacts[0].point);
-            Dead();
+            Dead(false);
         }
         else if (collision.transform.CompareTag("Pilot"))
         {
@@ -71,12 +85,16 @@ public class Bird : MonoBehaviour
         particle.GetComponent<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(0f, feathers));
         
         if (_health == 0)
-            Dead();
+            Dead(true);
     }
 
-    void Dead()
+    void Dead(bool awardPoints)
     {
+        if (_dead) return;
+
+        _dead = true;
         AudioSource.PlayClipAtPoint(deadClips[Random.Range(0, deadClips.Length)], transform.position);
+        GameManager.Instance.BirdDown(awardPoints ? points : 0);
         Destroy(gameObject);
     }
 }

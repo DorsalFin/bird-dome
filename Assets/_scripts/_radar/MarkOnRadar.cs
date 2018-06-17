@@ -9,10 +9,12 @@ using UnityEngine;
 public class MarkOnRadar : MonoBehaviour
 {
     public Color colour;
+    public Sprite icon;
 
 
 	void Start ()
     {
-        GameManager.Instance.radar.AddTarget(gameObject, colour);
+        if (GameManager.Instance.radar)
+            GameManager.Instance.radar.AddTarget(gameObject, colour, icon);
 	}
 }

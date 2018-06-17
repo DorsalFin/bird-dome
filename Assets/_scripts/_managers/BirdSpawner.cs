@@ -1,16 +1,198 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 [System.Serializable]
 public class BirdType
 {
     public GameObject prefab;
+    public int firstWave;
     public AnimationCurve curve;
     public float minCooldown;
     public float lastSpawn;
 }
 
+[System.Serializable]
+public class Wave
+{
+    public int num;
+    public int birdCount;
+    public List<BirdType> birdTypes = new List<BirdType>();
+    public bool running;
+    public int spawned = 0;
+    public float timer;
+    public float lastSpawn;
+    public bool started;
+
+
+    public Wave(int num, int birdCount)
+    {
+        this.num = num;
+        this.birdCount = birdCount;
+    }
+
+    public void End()
+    {
+        running = false;
+    }
+}
+
+
+public class BirdSpawner : MonoBehaviour
+{
+    public BirdType[] birdTypes;
+
+    // wave variables
+    public float betweenSpawns;
+    public int birdsPerWave;
+    public int aliveBirds = 0;
+    // scene references
+    public Text waveText;
+    public Transform deathSpawnParent;
+
+    public delegate void WaveStarting();
+    public WaveStarting waveStartDelegate;
+    public delegate void WaveEnding();
+    public WaveEnding waveEndDelegate;
+
+    Wave _wave;
+
+
+    private void Start()
+    {
+        SetNextWave();
+    }
+
+    private void Update()
+    {
+        if (_wave != null)
+        {
+            // set the wave to null when dying so it doesn't keep spawning/checking
+            // and possibly starting another wave
+            if (GameManager.Instance.dome.IsDead())
+            {
+                _wave = null;
+                return;
+            }
+
+            if (_wave.running)
+            {
+                _wave.timer += Time.deltaTime;
+
+                if (_wave.timer > _wave.lastSpawn + betweenSpawns)
+                {
+                    SpawnBird(_wave.birdTypes[Random.Range(0, _wave.birdTypes.Count)]);
+                    _wave.spawned++;
+
+                    if (_wave.spawned == _wave.birdCount)
+                        _wave.End();
+                }
+            }
+            else
+            {
+                if (_wave.started)
+                {
+                    // see if we've taken out all birds
+                    if (aliveBirds == 0)
+                        WaveEnded();
+                }
+            }
+        }
+    }
+
+    public void SetNextWave()
+    {
+        int waveNum = _wave == null ? 1 : _wave.num + 1;
+        _wave = new Wave(waveNum, waveNum * birdsPerWave);
+        foreach (BirdType birdType in birdTypes)
+        {
+            if (waveNum >= birdType.firstWave)
+                _wave.birdTypes.Add(birdType);
+        }
+
+        if (waveNum == 1)
+            IntroduceWave();
+        else
+            GameManager.Instance.dome.StartUpgrading();
+    }
+
+    public void IntroduceWave()
+    {
+        StartCoroutine("IntroduceWaveCoroutine");
+    }
+
+    IEnumerator IntroduceWaveCoroutine()
+    {
+        waveText.text = "wave " + _wave.num;
+        waveText.gameObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        waveText.gameObject.SetActive(false);
+        StartWave();
+    }
+
+    void StartWave()
+    {
+        if (waveStartDelegate != null)
+            waveStartDelegate();
+
+        Analytics.CustomEvent("waveStart_" + _wave.num);
+        _wave.started = true;
+        _wave.running = true;
+    }
+
+    void WaveEnded()
+    {
+        if (waveEndDelegate != null)
+            waveEndDelegate();
+
+        SetNextWave();
+    }
+
+    void SpawnBird(BirdType birdType)
+    {
+        Vector3 spawnPos = Vector3.zero;
+        Quaternion spawnRot = Quaternion.identity;
+
+        if (birdType.prefab.name == "SimpleBird")
+        {
+            spawnPos = Random.onUnitSphere * GameManager.Instance.worldRadius;
+            spawnPos.y = Mathf.Abs(spawnPos.y);
+            spawnRot = Quaternion.LookRotation(Vector3.zero - spawnPos, Vector3.up);
+        }
+        else if (birdType.prefab.name == "TurdBird")
+        {
+            float height = birdType.prefab.GetComponent<TurdBird>().height;
+            Vector3 temp = Random.insideUnitCircle.normalized * GameManager.Instance.worldRadius;
+            spawnPos = new Vector3(temp.x, height, temp.y);
+            spawnRot = Quaternion.LookRotation(new Vector3(0, height, 0) - spawnPos, Vector3.up);
+        }
+        else if (birdType.prefab.name == "Swoopy")
+        {
+            float height = birdType.prefab.GetComponent<SwoopBird>().height;
+            Vector3 temp = Random.insideUnitCircle.normalized * GameManager.Instance.worldRadius;
+            spawnPos = new Vector3(temp.x, height, temp.y);
+            spawnRot = Quaternion.LookRotation(new Vector3(0, height, 0) - spawnPos, Vector3.up);
+        }
+
+        Instantiate(birdType.prefab, spawnPos, spawnRot);
+        _wave.lastSpawn = _wave.timer;
+        aliveBirds++;
+    }
+
+    public void SpawnDeathBirds()
+    {
+        foreach (Transform child in deathSpawnParent)
+            Instantiate(birdTypes[Random.Range(0, birdTypes.Length)].prefab, child.transform.position, Quaternion.LookRotation(Vector3.zero - child.transform.position));
+    }
+
+    public int ReachedWave() {
+        return _wave.num;
+    }
+}
+
+/*
 public class BirdSpawner : MonoBehaviour
 {
     public BirdType[] birdTypes;
@@ -19,6 +201,8 @@ public class BirdSpawner : MonoBehaviour
     public float initialChanceMultiplier = 0.5f;
     public float multiGrowthAmount = 0.25f;
     public float multiIncreaseCooldown = 30f;
+
+    public Transform deathSpawnParent;
 
     /// <summary>
     /// The multiplier slowly rises as you play, in accordance with multiGrowthRate.
@@ -47,7 +231,7 @@ public class BirdSpawner : MonoBehaviour
     {
         foreach (BirdType birdType in birdTypes)
         {
-            float roll = Random.Range(0, 101) * _multi;
+            float roll = Random.Range(0, 101) / _multi;
             float value = birdType.curve.Evaluate(0) * 100f;//GameManager.Instance.day.currentTimeOfDay);
             if (roll <= value)
                 SpawnBird(birdType);
@@ -97,7 +281,13 @@ public class BirdSpawner : MonoBehaviour
         Debug.Log("multiplier increased to " + _multi);
         _lastMultiIncrease = Time.time;
     }
-}
+
+    public void SpawnDeathBirds()
+    {
+        foreach (Transform child in deathSpawnParent)
+            Instantiate(birdTypes[Random.Range(0, birdTypes.Length)].prefab, child.transform.position, Quaternion.LookRotation(Vector3.zero - child.transform.position));
+    }
+} */
 
 #region waves
 //using System.Collections;
