@@ -115,7 +115,7 @@ public class BirdSpawner : MonoBehaviour
         if (waveNum == 1)
             IntroduceWave();
         else
-            GameManager.Instance.dome.StartUpgrading();
+            GameManager.Instance.ui.ShowWaveCompleteAnim();
     }
 
     public void IntroduceWave()

@@ -22,7 +22,6 @@ GameObject:
   - component: {fileID: 33441506384410628}
   - component: {fileID: 23764098896098878}
   - component: {fileID: 65186917381182792}
-  - component: {fileID: 114744868283343024}
   m_Layer: 12
   m_Name: TurdSplat
   m_TagString: Untagged
@@ -97,14 +96,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.14987013, y: 0.18343775, z: 0.004884065}
   m_Center: {x: 0.0003960468, y: 0.0077032074, z: 0.00045629055}
---- !u!114 &114744868283343024
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1215989574783572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 960863b21b130ec418633583cc345b36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

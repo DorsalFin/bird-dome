@@ -136,7 +136,7 @@ public class RadarManager : MonoBehaviour
                         float va = Vector3.Angle(GameManager.Instance.dome.domeCamera.transform.forward, toTarget);
                         float sign = Mathf.Sign(Vector3.Dot(GameManager.Instance.dome.domeCamera.transform.right, Vector3.Cross(GameManager.Instance.dome.domeCamera.transform.forward, toTarget)));
                         bool up = va * sign < 0;
-                        bool show = va > 17f;
+                        bool show = va > 17f && !identifierInstalled;
                         target.upDownArrows[0].gameObject.SetActive(up && show);
                         target.upDownArrows[1].gameObject.SetActive(!up && show);
 

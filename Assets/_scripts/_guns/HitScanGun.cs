@@ -28,7 +28,7 @@ public class HitScanGun : Gun
             if (hit.transform.CompareTag("Bird"))
             {
                 Bird bird = hit.transform.GetComponent<Bird>();
-                bird.Hit(damage);
+                bird.Hit(damage, true);
             }
         }
     }

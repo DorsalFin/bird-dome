@@ -9,8 +9,10 @@ public class Dome : MonoBehaviour
 {
     public Pilot pilot;
     public UpgradeManager upgradeManager;
+    public CleanAndRepair cleanAndRepair;
     public Transform baseTransform;
     public GameObject model;
+    public Gun gun;
     public GameObject brokenModel;
     public Transform ui;
     public float maxHealth;
@@ -22,22 +24,27 @@ public class Dome : MonoBehaviour
     public Camera upgradeCamera;
     public Slider healthSlider;
     public Image healthSliderOverlay;
-    //public CinemachineVirtualCamera virtualCamera;
+    public Renderer[] domeRenderers;
+        //public CinemachineVirtualCamera virtualCamera;
 
     public bool IsDead() { return pilot.dead; }
     public bool CanLook { get { return !Upgrading; } }
     public bool CanShoot { get { return !Upgrading && !Walkthrough.Instance.ShootLocked; } }
+    public Transform TurdParent { get { return _turdParent; } }
     public bool Upgrading {
         get { return _upgrading; }
         set { _upgrading = value; }
     }
+    public bool Cleaning { get { return cleanAndRepair.Cleaning; } }
 
     float _health;
     AudioSource _audio;
     Transform _crackParent;
+    Transform _turdParent;
     CameraShaker _cameraShaker;
     bool _broken;
     bool _upgrading;
+    bool _cleaning;
 
 
     private void Awake()
@@ -46,6 +53,10 @@ public class Dome : MonoBehaviour
         _health = maxHealth;
         _crackParent = new GameObject().transform;
         _crackParent.transform.parent = model.transform;
+        _crackParent.name = "cracks";
+        _turdParent = new GameObject().transform;
+        _turdParent.transform.parent = model.transform;
+        _turdParent.name = "turds";
         _cameraShaker = GetComponentInChildren<CameraShaker>();
     }
 
@@ -62,6 +73,15 @@ public class Dome : MonoBehaviour
 //#endif
     }
 
+    public void SetWiggle(int value)
+    {
+        foreach (Renderer rend in domeRenderers)
+        {
+            if (rend != null) // renderers can get destroyed (e.g. the glass dome)
+                rend.material.SetInt("_Wiggle", value);
+        }
+    }
+
     public void Hit(float damage, Vector3 point)
     {
         ShakeDome();
@@ -73,9 +93,11 @@ public class Dome : MonoBehaviour
         else
         {
             // we only need to add a crack if we're still alive
+            Vector3 dir = point - model.transform.position;
+            Vector3 hitPoint = model.transform.position + (dir.normalized * 1f);
             Quaternion lookAt = Quaternion.LookRotation(point - model.transform.position);
-            lookAt *= Quaternion.Euler(Vector3.forward * (Random.Range(0, 180)));
-            GameObject crack = Instantiate(crackPrefabs[Random.Range(0, crackPrefabs.Length)], point, lookAt);
+            lookAt *= Quaternion.Euler(Vector3.forward * (Random.Range(0, 180))); // rotate it around it's x axis randomly so they don't all look the same
+            GameObject crack = Instantiate(crackPrefabs[Random.Range(0, crackPrefabs.Length)], hitPoint, lookAt);
             crack.transform.parent = _crackParent;
             healthSlider.value = healthSlider.value - 1;
         }
@@ -138,26 +160,27 @@ public class Dome : MonoBehaviour
 
         // set the camera states
         upgradeCamera.gameObject.SetActive(true);
-        GameManager.Instance.dome.domeCamera.gameObject.SetActive(false);
+        GameManager.Instance.ui.waveCompleteAnim.gameObject.SetActive(false);
 
         // turn off dome UI things
         ui.gameObject.SetActive(false);
         GameManager.Instance.radar.ui.gameObject.SetActive(false);
 
         upgradeManager.CreateUpgrades(3);
-        //StartCoroutine("UpgradeTimer");
-    }
-
-    IEnumerator UpgradeTimer()
-    {
-        yield return new WaitForSeconds(10f);
-        StopUpgrading();
     }
 
     public void StopUpgrading()
     {
+        // should we turn on clean/repair mode?
+        if (_crackParent.childCount > 0 || _turdParent.childCount > 0)
+            cleanAndRepair.ToggleCleaning(true);
+        else
+            UpgradingAndCleaningDone();
+    }
+
+    public void UpgradingAndCleaningDone()
+    {
         // set the camera states
-        GameManager.Instance.dome.domeCamera.gameObject.SetActive(true);
         upgradeCamera.gameObject.SetActive(false);
 
         // turn on the dome ui stuff if not broken

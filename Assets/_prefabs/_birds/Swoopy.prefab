@@ -720,8 +720,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 8c164297642f76a4f99e23ce51765b87, type: 3}
   featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
     type: 2}
+  moveTime: 0.1
+  moveSteps: 2
   points: 7
-  height: 20
+  height: 35
   swoopSpeedMultiplier: 2.5
   swoopClips:
   - {fileID: 8300000, guid: ddea768fb3943414ebba26a16ce2262a, type: 3}

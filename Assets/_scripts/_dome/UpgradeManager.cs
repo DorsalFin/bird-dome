@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.UI;
 
 public enum UpgradeParent
@@ -72,15 +73,28 @@ public class UpgradeManager : MonoBehaviour
             : upgrade.parent == UpgradeParent.Base ? GameManager.Instance.dome.baseTransform
             : upgrade.parent == UpgradeParent.DomeModel ? GameManager.Instance.dome.model.transform
             : upgrade.parent == UpgradeParent.Radar ? GameManager.Instance.radar.transform
+            : upgrade.parent == UpgradeParent.Gun ? GameManager.Instance.dome.gun.transform
             : null;
 
         // instantiate the object on the parent
         GameObject upgradeObj = Instantiate(upgrade.prefab, parent);
 
-        // TODO: remove from upgrades so we don't get it again
+        // remove from upgrades so we don't get it again
+        RemoveAt(ref upgrades, System.Array.IndexOf(upgrades, upgrade));
+
+        Analytics.CustomEvent("upgrade_" + upgrade.uName);
+
         // TODO: fancy flash or something
 
         yield return new WaitForSeconds(2f);
         GameManager.Instance.dome.StopUpgrading();
+    }
+
+    void RemoveAt<T>(ref T[] arr, int index)
+    {
+        // replace the element at index with the last element
+        arr[index] = arr[arr.Length - 1];
+        // and let's decrement Array's size by one
+        System.Array.Resize(ref arr, arr.Length - 1);
     }
 }

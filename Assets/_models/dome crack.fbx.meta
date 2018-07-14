@@ -4,11 +4,20 @@ ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
     100000: //RootNode
+    100002: crack
+    100004: dome
     400000: //RootNode
+    400002: crack
+    400004: dome
     2100000: inner
     2300000: //RootNode
+    2300002: crack
+    2300004: dome
     3300000: //RootNode
+    3300002: crack
+    3300004: dome
     4300000: crack
+    4300002: dome
   externalObjects: {}
   materials:
     importMaterials: 0

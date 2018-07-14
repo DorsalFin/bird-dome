@@ -438,7 +438,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1038060026560816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.671, z: -0.315}
+  m_LocalPosition: {x: -0, y: -0.59, z: -0.353}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4374615746928674}
@@ -762,11 +762,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddea768fb3943414ebba26a16ce2262a, type: 3}
   featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
     type: 2}
+  moveTime: 0.1
+  moveSteps: 1
   points: 9
   height: 25
   turdPrefab: {fileID: 1910797902501438, guid: 9c961fae26b19e54998344d23be3e231, type: 2}
   turdOrigin: {fileID: 4232017796929034}
-  turdDistanceFromZero: 1
+  turdDistanceFromZero: 1.5
   turdMinDelay: 0.05
   turdMaxDelay: 0.25
 --- !u!119 &119829805507433788
@@ -814,11 +816,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: a2bfff75478c18641811212e50f29c82, type: 2}
-  - {fileID: 2100000, guid: 1d4e4cec8912d6b41a012e939316d109, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
+  - {fileID: 2100000, guid: 99681af1bf4eb6e4891e6375ee3da6dd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -842,7 +840,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300006, guid: f7d1453077c7759408c79e83c789e393, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bbe7b85520469194dab85c8da5ff29e8, type: 3}
   m_Bones:
   - {fileID: 4594986389157332}
   - {fileID: 4840961708209288}

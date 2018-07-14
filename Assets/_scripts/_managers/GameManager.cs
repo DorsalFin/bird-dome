@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    public float ClayMoveAmt = 1;
+    public float ClayJukeRadius = 1;
+
     public float worldRadius = 50f;
     public Dome dome;
     public BirdSpawner birdSpawner;
@@ -47,9 +50,16 @@ public class GameManager : MonoBehaviour
 
     public void BirdDown(int points)
     {
-        _points += points;
+        if (points > 0)
+            AddPoints(points);
         _birdsKilled++;
         birdSpawner.aliveBirds--;
+    }
+
+    public void AddPoints(int points)
+    {
+        _points += points;
+        ui.AddScore(points, _points);
     }
 
     public void EndGame()

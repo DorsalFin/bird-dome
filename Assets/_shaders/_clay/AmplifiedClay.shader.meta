@@ -1,0 +1,10 @@
+fileFormatVersion: 2
+guid: 228624357671e094797a1be088f2bac9
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures:
+  - _claynormal: {fileID: 2800000, guid: 2499d375cb4b2bb488b6b2f1ed7cb69c, type: 3}
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -8,6 +8,7 @@ public class CannonBall : MonoBehaviour
     public float gravityStartTime;
     public GameObject explodePrefab;
     public AudioClip[] hitClips;
+    public bool usesGravity = true;
 
     float _radius;
     float _timer;
@@ -21,18 +22,22 @@ public class CannonBall : MonoBehaviour
 
     private void Update()
     {
-        if (!_gravityOn && _timer >= gravityStartTime)
+        if (usesGravity)
         {
-            GetComponent<Rigidbody>().useGravity = true;
-            _gravityOn = true;
+            if (!_gravityOn && _timer >= gravityStartTime)
+            {
+                GetComponent<Rigidbody>().useGravity = true;
+                _gravityOn = true;
+            }
+            else
+                _timer += Time.deltaTime;
         }
-        else
-            _timer += Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Boundary")) // the boundary will destroy this object
+        // the boundary will destroy this object, and Upgrade colliders shouldn't block projectiles
+        if (other.CompareTag("Boundary") || other.CompareTag("Upgrade"))
             return;
 
         Collider[] hits = Physics.OverlapSphere(transform.position, _radius);
@@ -43,7 +48,7 @@ public class CannonBall : MonoBehaviour
             if (hit.CompareTag("Bird"))
             {
                 Bird bird = hit.GetComponent<Bird>();
-                bird.Hit(damage);
+                bird.Hit(damage, true);
             }
         }
 

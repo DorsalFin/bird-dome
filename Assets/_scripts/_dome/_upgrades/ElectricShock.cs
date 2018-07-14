@@ -6,7 +6,7 @@ public class ElectricShock : MonoBehaviour
 {
     public float damage = 5f;
     public AudioClip shockClip;
-    public ParticleSystem chargedParticle;
+    public GameObject chargedParticle;
     public GameObject shockParticlePrefab;
 
     bool _used;
@@ -39,10 +39,10 @@ public class ElectricShock : MonoBehaviour
             AudioSource.PlayClipAtPoint(shockClip, bird.transform.position);
 
             // damage the bird
-            bird.Hit(damage);
+            bird.Hit(damage, false);
 
             // disable the charged particle for now
-            chargedParticle.Stop();
+            chargedParticle.SetActive(false);
 
             _used = true;
         }
@@ -54,6 +54,6 @@ public class ElectricShock : MonoBehaviour
         _used = false;
 
         // turn the charged particle back on
-        chargedParticle.Play();
+        chargedParticle.SetActive(true);
     }
 }

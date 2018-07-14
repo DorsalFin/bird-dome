@@ -17,7 +17,7 @@ upgrades
 between waves you can...
 	- clean poo with a rag (physically takes time)
 	- repair cracks with some kind of glue-filler (physically takes time)
-	- install an upgrade on your dome (just have to press a button but mentally takes time to decide)
+	- install an upgrade on your dome (mentally takes time)
 ...you have a limited time until the next wave comes
 
 - upgrades are visually fantastic

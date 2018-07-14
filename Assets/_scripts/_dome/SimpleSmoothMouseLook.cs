@@ -40,8 +40,8 @@ public class SimpleSmoothMouseLook : MonoBehaviour
 
     void Update()
     {
-        //if (!_dome.CanLook)
-        //    return;
+        if (!_dome.CanLook)
+            return;
 
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);
@@ -69,10 +69,14 @@ public class SimpleSmoothMouseLook : MonoBehaviour
             if (Walkthrough.Instance.IsRunning)
                 Walkthrough.Instance.FillStepBar(0.0075f, 0);
 
+            _dome.SetWiggle(1);
+
             _audio.volume = Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude);
             _audio.pitch = (Mathf.InverseLerp(0.1f, 5f, mouseDelta.magnitude) / 2f) + 0.75f;
             _audio.Play();
         }
+        else
+            _dome.SetWiggle(0);
 
         transform.localRotation = Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation * Vector3.right) * targetOrientation;
 

@@ -317,7 +317,7 @@ Transform:
   - {fileID: 4352561306504674}
   m_Father: {fileID: 4683564512634628}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 88.020874, y: 69.598015, z: 107.460815}
 --- !u!4 &4152123551279626
 Transform:
   m_ObjectHideFlags: 1
@@ -333,7 +333,7 @@ Transform:
   - {fileID: 4702620947874900}
   m_Father: {fileID: 4277887556883064}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 16.083582, y: 0.0000017771052, z: -89.999985}
 --- !u!4 &4277887556883064
 Transform:
   m_ObjectHideFlags: 1
@@ -348,7 +348,7 @@ Transform:
   - {fileID: 4152123551279626}
   m_Father: {fileID: 4374615746928674}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!4 &4352561306504674
 Transform:
   m_ObjectHideFlags: 1
@@ -361,7 +361,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4010932154266986}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -53.963997, y: 88.93538, z: -90.09836}
 --- !u!4 &4355089051507308
 Transform:
   m_ObjectHideFlags: 1
@@ -375,7 +375,7 @@ Transform:
   - {fileID: 4495560487259536}
   m_Father: {fileID: 4587438292422808}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.0706837, y: 15.84394, z: -109.8794}
 --- !u!4 &4363734983134476
 Transform:
   m_ObjectHideFlags: 1
@@ -388,15 +388,15 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4868951833692484}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -85.57583, y: -85.19749, z: 79.75767}
 --- !u!4 &4374615746928674
 Transform:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1366354547719658}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.91, y: 6.7, z: 14.34}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.0000029206271}
+  m_LocalPosition: {x: -0.76, y: 2.11, z: 2.119}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4277887556883064}
@@ -405,7 +405,7 @@ Transform:
   - {fileID: 4545147960147560}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180.00002, z: 0}
 --- !u!4 &4424174678555324
 Transform:
   m_ObjectHideFlags: 1
@@ -418,7 +418,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4467417572069150}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -53.961697, y: 91.224106, z: -90.098434}
 --- !u!4 &4440930603622388
 Transform:
   m_ObjectHideFlags: 1
@@ -431,7 +431,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4152123551279626}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0.0000017023335, y: 23.174747, z: 0.00000034904815}
 --- !u!4 &4467417572069150
 Transform:
   m_ObjectHideFlags: 1
@@ -445,7 +445,7 @@ Transform:
   - {fileID: 4424174678555324}
   m_Father: {fileID: 4702620947874900}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 88.07786, y: -111.833954, z: -73.96822}
 --- !u!4 &4495560487259536
 Transform:
   m_ObjectHideFlags: 1
@@ -458,7 +458,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4355089051507308}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -73.93819, y: 155.1653, z: -158.09833}
 --- !u!4 &4507869263345762
 Transform:
   m_ObjectHideFlags: 1
@@ -500,7 +500,7 @@ Transform:
   - {fileID: 4355089051507308}
   m_Father: {fileID: 4277887556883064}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 84.49668, y: 179.99988, z: 90.00001}
 --- !u!4 &4683564512634628
 Transform:
   m_ObjectHideFlags: 1
@@ -514,7 +514,7 @@ Transform:
   - {fileID: 4010932154266986}
   m_Father: {fileID: 4152123551279626}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.033073537, y: 125.849, z: 179.08383}
 --- !u!4 &4696218141431110
 Transform:
   m_ObjectHideFlags: 1
@@ -541,7 +541,7 @@ Transform:
   - {fileID: 4467417572069150}
   m_Father: {fileID: 4152123551279626}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.033079434, y: 125.847946, z: -179.08382}
 --- !u!4 &4868951833692484
 Transform:
   m_ObjectHideFlags: 1
@@ -555,7 +555,7 @@ Transform:
   - {fileID: 4363734983134476}
   m_Father: {fileID: 4587438292422808}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 4.482482, y: -2.31818, z: 111.07907}
 --- !u!4 &4978789104382304
 Transform:
   m_ObjectHideFlags: 1
@@ -568,7 +568,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4587438292422808}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.000018443769, y: -159.16364, z: -179.99998}
 --- !u!54 &54899213266371876
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -720,6 +720,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddea768fb3943414ebba26a16ce2262a, type: 3}
   featherParticle: {fileID: 1741256025651598, guid: f13670f2045ded149b252e00bda35d0b,
     type: 2}
+  moveTime: 0.1
+  moveSteps: 1
   points: 5
 --- !u!114 &114571532718574108
 MonoBehaviour:
@@ -779,11 +781,7 @@ SkinnedMeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: c72390e4be99ff0448915af6e4af941d, type: 2}
-  - {fileID: 2100000, guid: 1d4e4cec8912d6b41a012e939316d109, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
-  - {fileID: 2100000, guid: b63b57acc31977c4286a561acc735689, type: 2}
+  - {fileID: 2100000, guid: 6dba4738b028c5743be88362c7c0a7b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -807,7 +805,7 @@ SkinnedMeshRenderer:
   m_Quality: 0
   m_UpdateWhenOffscreen: 0
   m_SkinnedMotionVectors: 1
-  m_Mesh: {fileID: 4300006, guid: f7d1453077c7759408c79e83c789e393, type: 3}
+  m_Mesh: {fileID: 4300000, guid: bbe7b85520469194dab85c8da5ff29e8, type: 3}
   m_Bones:
   - {fileID: 4587438292422808}
   - {fileID: 4978789104382304}

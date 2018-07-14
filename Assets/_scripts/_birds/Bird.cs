@@ -11,6 +11,8 @@ public class Bird : MonoBehaviour
     public AudioClip[] cawClips;
     public AudioClip[] deadClips;
     public GameObject featherParticle;
+    public float moveTime;
+    public float moveSteps;
 
     public int points;
 
@@ -21,6 +23,8 @@ public class Bird : MonoBehaviour
     float _health;
     bool _diverted;
     bool _dead;
+    float _clayTimer;
+    float _lastStep;
 
 
     public virtual void Awake()
@@ -42,8 +46,12 @@ public class Bird : MonoBehaviour
             _diverted = true;
         }
 
-        float step = speed * Time.deltaTime;
-        transform.position = Vector3.MoveTowards(transform.position, _target, step);
+        //float step = speed * Time.deltaTime;
+        //transform.position = Vector3.MoveTowards(transform.position, _target, step);
+        _clayTimer += Time.deltaTime;
+        if (_clayTimer >= moveTime)
+            Step();
+
         Quaternion targetRot = Quaternion.LookRotation(_target - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRot, Time.deltaTime * rotationSpeed);
 
@@ -51,6 +59,15 @@ public class Bird : MonoBehaviour
         float dist = Vector3.Distance(transform.position, _target);
         if ((!_diverted && Mathf.Abs(dist) < 0.5f) || (_diverted && Mathf.Abs(dist) < 1.25f))
             TargetReached();
+    }
+
+    void Step()
+    {
+        float distance = GameManager.Instance.ClayMoveAmt * moveSteps;
+        Vector3 pos = Vector3.MoveTowards(transform.position, _target, distance);
+        pos += Random.insideUnitSphere * GameManager.Instance.ClayJukeRadius;
+        transform.position = pos;
+        _clayTimer = 0f;
     }
 
     // override for functionality
@@ -74,7 +91,7 @@ public class Bird : MonoBehaviour
         }
     }
 
-    public void Hit(float damage)
+    public void Hit(float damage, bool givePoints)
     {
         _health = Mathf.Clamp(_health - damage, 0, maxHealth);
 
@@ -85,7 +102,7 @@ public class Bird : MonoBehaviour
         particle.GetComponent<ParticleSystem>().emission.SetBurst(0, new ParticleSystem.Burst(0f, feathers));
         
         if (_health == 0)
-            Dead(true);
+            Dead(givePoints);
     }
 
     void Dead(bool awardPoints)

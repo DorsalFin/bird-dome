@@ -22,7 +22,7 @@ public class DragRotate : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if (GameManager.Instance.dome.Upgrading)
+        if (GameManager.Instance.dome.Cleaning)
         {
             _touchPos = Input.mousePosition;
             _rotating = true;

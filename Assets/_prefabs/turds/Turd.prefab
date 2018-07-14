@@ -116,6 +116,7 @@ MonoBehaviour:
     type: 2}
   hitClips:
   - {fileID: 8300000, guid: bcd0896b08891bf40b4755a6ffd770e6, type: 3}
+  offset: 0.15
 --- !u!135 &135680619717364782
 SphereCollider:
   m_ObjectHideFlags: 1
