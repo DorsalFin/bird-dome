@@ -90,17 +90,19 @@ Material:
     - _NormalAnimSpeed: 63.919277
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Smoothness: 0
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _VertexAnimScale: 0.01
     - _VertexAnimSpeed: 5
+    - _Wiggle: 0
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
     - _ASEOutlineColor: {r: 0.23529413, g: 0.1764706, b: 0.50980395, a: 1}
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.6313726, g: 0.8666667, b: 0.9607843, a: 1}
     - _Color0: {r: 0.4764151, g: 0.8504044, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}

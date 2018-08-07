@@ -7,6 +7,11 @@ using UnityStandardAssets.CrossPlatformInput;
 
 public class UIManager : MonoBehaviour
 {
+    public Canvas worldCanvas;
+    public GameObject beaksPanel;
+    public Text beaksHeaderText;
+    public Text beaksValueText;
+
     public GameObject settingsButton;
     public GameObject settingsPanel;
     public Text sensitivityValue;
@@ -61,6 +66,21 @@ public class UIManager : MonoBehaviour
     {
         waveCompleteAnim.gameObject.SetActive(true);
         waveCompleteAnim.Play("waveComplete_show_anim", 0, 0f);
+    }
+
+    public void GiveBeaks(int beaks) {
+        StartCoroutine(GiveBeaksCoroutine(beaks));
+    }
+
+    IEnumerator GiveBeaksCoroutine(int beaks)
+    {
+        beaksHeaderText.gameObject.SetActive(true);
+        beaksValueText.gameObject.SetActive(false);
+        beaksPanel.SetActive(true);
+        worldCanvas.gameObject.SetActive(true);
+        yield return new WaitForSeconds(1f);
+        beaksValueText.text = beaks + " beaks!";
+        beaksValueText.gameObject.SetActive(true);
     }
 
     public void AddScore(int score, int total)

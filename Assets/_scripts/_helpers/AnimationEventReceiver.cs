@@ -7,8 +7,10 @@ public class AnimationEventReceiver : MonoBehaviour
     public AudioClip pointsClip;
 
 
-    public void WaveCompleteAnimEnd() {
-        GameManager.Instance.dome.StartUpgrading();
+    public void WaveCompleteAnimEnd()
+    {
+        GameManager.Instance.NextWaveInSeconds(2f);
+        //GameManager.Instance.dome.StartUpgrading();
     }
 
     public void AddPoints(int points)

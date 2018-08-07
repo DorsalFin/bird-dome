@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public Camera watchCamera;
     public HighScores highScore;
 
+    public GameObject[] deathPrefabs;
+
     public Vector2 sensitivityBounds = new Vector2();
 
     public bool IsPlaying() { return _playing; }
@@ -72,10 +74,11 @@ public class GameManager : MonoBehaviour
         // send score to high score site
         int total = _points * birdSpawner.ReachedWave();
 
-        if (HighScores.Instance.myTopScore == null || total > HighScores.Instance.myTopScore.score)
-            HighScores.Instance.AddNewHighScore(PlayerPrefs.GetString("username"), total, Mathf.CeilToInt(_seconds));
-        else
-            HighScores.Instance.lastScore = new HighScore(PlayerPrefs.GetString("username"), total);
+        Debug.Log("TODO: high scores?");
+        //if (HighScores.Instance.myTopScore == null || total > HighScores.Instance.myTopScore.score)
+        //    HighScores.Instance.AddNewHighScore(PlayerPrefs.GetString("username"), total, Mathf.CeilToInt(_seconds));
+        //else
+        //    HighScores.Instance.lastScore = new HighScore(PlayerPrefs.GetString("username"), total);
 
         ui.settingsButton.SetActive(false);
         StartCoroutine(DeathSequence());
@@ -86,6 +89,28 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         GetComponent<AudioSource>().Play();
         yield return new WaitForSeconds(2f);
-        SceneManager.LoadScene("death");
+
+        //SceneManager.LoadScene("death");
+        Instantiate(deathPrefabs[Random.Range(0, deathPrefabs.Length)]);
+    }
+
+    public void NextWaveInSeconds(float seconds) {
+        StartCoroutine(NextWaveInSecondsCoroutine(seconds));
+    }
+
+    IEnumerator NextWaveInSecondsCoroutine(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        birdSpawner.IntroduceWave();
+    }
+
+    public void GiveBeaks()
+    {
+        int beaks = PlayerPrefs.GetInt("beaks", 0);
+
+        // TODO: modify this amount by some kind of increasable upgrade
+
+        PlayerPrefs.SetInt("beaks", beaks + _birdsKilled);
+        ui.GiveBeaks(_birdsKilled);
     }
 }

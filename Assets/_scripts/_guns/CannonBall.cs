@@ -53,7 +53,9 @@ public class CannonBall : MonoBehaviour
         }
 
         if (explodePrefab)
-            Instantiate(explodePrefab, transform.position, Quaternion.identity);
+        {
+            Instantiate(explodePrefab, transform.position, Quaternion.LookRotation(transform.position - GameManager.Instance.dome.model.transform.position));
+        }
 
         if (hitClips.Length > 0)
             AudioSource.PlayClipAtPoint(hitClips[Random.Range(0, hitClips.Length)], transform.position);

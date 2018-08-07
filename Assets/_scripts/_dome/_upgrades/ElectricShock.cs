@@ -5,24 +5,32 @@ using UnityEngine;
 public class ElectricShock : MonoBehaviour
 {
     public float damage = 5f;
+    public float rechargeTime = 10f;
     public AudioClip shockClip;
     public GameObject chargedParticle;
     public GameObject shockParticlePrefab;
 
-    bool _used;
+    float _timer = 0f;
+    bool _charged = true;
 
 
-    private void OnEnable() {
-        GameManager.Instance.birdSpawner.waveEndDelegate += Recharge;
+    private void Awake() {
+        Recharge();
     }
 
-    private void OnDisable() {
-        GameManager.Instance.birdSpawner.waveEndDelegate -= Recharge;
+    private void Update()
+    {
+        if (!_charged)
+            _timer -= Time.deltaTime;
+
+        // are we recharging?
+        if (_timer <= 0)
+            Recharge();
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (_used)
+        if (!_charged)
             return;
 
         if (other.tag == "Bird")
@@ -44,16 +52,15 @@ public class ElectricShock : MonoBehaviour
             // disable the charged particle for now
             chargedParticle.SetActive(false);
 
-            _used = true;
+            // reset timer
+            _timer = rechargeTime;
+            _charged = false;
         }
     }
 
     void Recharge()
     {
-        Debug.Log("recharging electric shocker");
-        _used = false;
-
-        // turn the charged particle back on
+        _charged = true;
         chargedParticle.SetActive(true);
     }
 }

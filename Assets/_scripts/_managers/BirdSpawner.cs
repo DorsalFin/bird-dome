@@ -113,9 +113,20 @@ public class BirdSpawner : MonoBehaviour
         }
 
         if (waveNum == 1)
-            IntroduceWave();
+            StartCoroutine(StartWaveInSeconds(0f));
         else
-            GameManager.Instance.ui.ShowWaveCompleteAnim();
+            StartCoroutine(StartWaveInSeconds(2f));
+
+        //if (waveNum == 1)
+        //    IntroduceWave();
+        //else
+        //    GameManager.Instance.ui.ShowWaveCompleteAnim();
+    }
+
+    IEnumerator StartWaveInSeconds(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        StartWave();
     }
 
     public void IntroduceWave()

@@ -62,15 +62,16 @@ public class Dome : MonoBehaviour
 
     private void Update()
     {
-//#if UNITY_EDITOR
-//        if (Input.GetKeyDown(KeyCode.K))
-//        {
-//            if (!_broken)
-//                Broken();
-//            else if (!pilot.dead)
-//                GameManager.Instance.EndGame();
-//        }
-//#endif
+#if UNITY_EDITOR
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            //ShakeDome();
+            if (!_broken)
+                Broken();
+            else if (!pilot.dead)
+                GameManager.Instance.EndGame();
+        }
+#endif
     }
 
     public void SetWiggle(int value)
